@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DreamDirt — Buy Land Online</title>
+
+<style>
+/* ---------------------------------------------------------
+   GLOBAL
+--------------------------------------------------------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* ---------------------------------------------------------
+   PRELOADER
+--------------------------------------------------------- */
+#preloader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999999;
+}
+.loader {
+  border: 8px solid #333;
+  border-top: 8px solid #ffd700;
+  border-radius: 50%;
+  width: 80px; height: 80px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* ---------------------------------------------------------
+   SLIDESHOW BACKGROUND (Images replaced!)
+--------------------------------------------------------- */
+.bg-slideshow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  animation: slideShow 20s infinite;
+  filter: brightness(0.55);
+}
+
+@keyframes slideShow {
+  0%   { background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80'); }
+  33%  { background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80'); }
+  66%  { background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80'); }
+  100% { background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80'); }
+}
+
+/* ---------------------------------------------------------
+   NAVIGATION
+--------------------------------------------------------- */
+.navbar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  padding: 20px;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  z-index: 2000;
+  transition: 0.3s;
+}
+
+.navbar.shrink { padding: 10px; background: rgba(0,0,0,0.7); }
+
+.navbar a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #ffd700;
+  font-size: 1.1em;
+}
+.navbar a.active { color: #fff; text-decoration: underline; }
+
+/* ---------------------------------------------------------
+   HERO
+--------------------------------------------------------- */
+header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+header h1 {
+  font-size: 3.5rem;
+  text-shadow: 0 0 15px black;
+  animation: fadeIn 1.2s ease-out;
+}
+header p {
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin: 20px auto;
+  animation: fadeIn 2s ease-out;
+}
+
+/* ---------------------------------------------------------
+   BUTTONS
+--------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  background: #28a745;
+  color: white;
+  border-radius: 6px;
+  font-size: 1.3rem;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: .3s;
+}
+.btn:hover { background: #1e7e34; transform: scale(1.05); }
+
+/* ---------------------------------------------------------
+   SECTIONS
+--------------------------------------------------------- */
+section {
+  background: rgba(0,0,0,0.7);
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 60px 25px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s;
+}
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ffd700;
+}
+
+/* ---------------------------------------------------------
+   MAP PLACEHOLDER (no API needed)
+--------------------------------------------------------- */
+#map {
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
+  margin-top: 20px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/BlankMap-World.svg/2000px-BlankMap-World.svg.png') center/contain no-repeat;
+  filter: brightness(0.8);
+  border: 2px solid #ffd700;
+}
+
+/* ---------------------------------------------------------
+   FOOTER
+--------------------------------------------------------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.8);
+}
+footer a { color: #ffd700; }
+
+/* ---------------------------------------------------------
+   MOBILE
+--------------------------------------------------------- */
+@media (max-width: 700px) {
+  header h1 { font-size: 2.4rem; }
+  .navbar { flex-wrap: wrap; gap: 10px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader"><div class="loader"></div></div>
+
+<!-- BACKGROUND SLIDESHOW (Images already replaced!) -->
+<div class="bg-slideshow"></div>
+
+<!-- NAV BAR -->
+<div class="navbar" id="navbar">
+  <a href="#about">About</a>
+  <a href="#features">Features</a>
+  <a href="#mapsection">Land Map</a>
+  <a href="#coming">Coming Soon</a>
+  <a href="#share">Share Offer</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<header>
+  <h1>DreamDirt — The Future of Land Buying</h1>
+  <p>Drone views, verified listings, AI search, and secure escrow — all in one advanced marketplace.</p>
+  <a href="#about" class="btn">Explore DreamDirt</a>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About DreamDirt</h2>
+  <p>DreamDirt makes buying and selling land online safe, transparent and effortless.</p>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <h2>App Features</h2>
+  <ul style="font-size: 1.2rem; line-height: 2;">
+    <li>✔ Verified Land Listings</li>
+    <li>✔ AI Land Recommendation System</li>
+    <li>✔ Virtual Drone Tours</li>
+    <li>✔ Secure Escrow Payments</li>
+    <li>✔ Seller Dashboard</li>
+    <li>✔ Map-based Search & Filters</li>
+  </ul>
+</section>
+
+<!-- MAP -->
+<section id="mapsection">
+  <h2>Land Search Map</h2>
+  <div id="map"></div>
+</section>
+
+<!-- COMING SOON -->
+<section id="coming">
+  <h2>Our App — Coming Soon</h2>
+  <p>Launching on iOS, Android, and Web very soon!</p>
+</section>
+
+<!-- SHARE OFFER -->
+<section id="share">
+  <h2>Developer Share Opportunity</h2>
+  <p>Join our founding developer team. Equity shares available for skilled contributors.</p>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <p>Contact: <a href="mailto:dreamdirt5@gmail.com">dreamdirt5@gmail.com</a></p>
+  <p>&copy; 2025 DreamDirt</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+// PRELOADER
+window.onload = () => {
+  document.getElementById('preloader').style.opacity = 0;
+  setTimeout(() => document.getElementById('preloader').style.display = "none", 600);
+};
+
+// NAVBAR SHRINK
+const navbar = document.getElementById("navbar");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 80) navbar.classList.add("shrink");
+  else navbar.classList.remove("shrink");
+});
+
+// SECTION REVEAL
+const sections = document.querySelectorAll("section");
+function reveal() {
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight - 100)
+      sec.classList.add("visible");
+  });
+}
+window.addEventListener("scroll", reveal);
+reveal();
+</script>
+
+</body>
+</html>
